@@ -1,28 +1,4 @@
-<?php 
-
-require '../vendor/autoload.php';
-
-use App\QueryBuilder;
-
-$db = new QueryBuilder();
-
-
-$comments = $db->getAllComments(
-	['comments.dt_add, comments.name, comments.text, users.avatar'], 
-	'comments', 
-	'users', 
-	'users.id  = comments.user_id', 
-	'show_comment = 1', 
-	['comments.dt_add']
-);
-
-
-$this->layout('layout', ['title' => 'Comments']) 
-
-?>
-
-
-
+<?php $this->layout('layout', ['title' => 'Comments']) ?>
 
 <div class="col-md-12">
                      

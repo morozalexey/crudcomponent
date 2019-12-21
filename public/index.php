@@ -1,23 +1,11 @@
 <?php
+
 if( !session_id() ) @session_start();
 require '../vendor/autoload.php';
 
-
-
-// Create new Plates instance
-$templates = new League\Plates\Engine('../app/views');
-
-
-// Render a template
-echo $templates->render('homepage', ['name' => 'Jonathan']);
-
-
 $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
-    $r->addRoute('GET', '/users', 'get_all_users_handler');
-    // {id} must be a number (\d+)
-    $r->addRoute('GET', '/user/{id:\d+}', 'get_user_handler');
-    // The /{title} suffix is optional
-    $r->addRoute('GET', '/articles/{id:\d+}[/{title}]', 'get_article_handler');
+    $r->addRoute('GET', '/', ['App\controllers\HomeController', 'index']);
+    $r->addRoute('GET', '/profile', ['App\controllers\HomeController', 'profile']);
 });
 
 // Fetch method and URI from somewhere
@@ -42,7 +30,8 @@ switch ($routeInfo[0]) {
     case FastRoute\Dispatcher::FOUND:
         $handler = $routeInfo[1];
         $vars = $routeInfo[2];
-        // ... call $handler with $vars
+        $controller = new $handler[0];
+        call_user_func([$controller, $handler[1]], $vars);
         break;
 }
 

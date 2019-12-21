@@ -1,5 +1,5 @@
 <?php 
-
+/*
 require '../vendor/autoload.php';
 
 use App\QueryBuilder;
@@ -10,7 +10,7 @@ $db = new QueryBuilder();
 $user_id = $_SESSION['user']['id'];
 
 $users = $db->getAll('users');
-
+*/
 
 $this->layout('layout', ['title' => 'User Profile']) 
 
@@ -25,7 +25,7 @@ $this->layout('layout', ['title' => 'User Profile'])
 
             <form action="profile-edit.php" method="POST" enctype="multipart/form-data">
                 <div class="row">
-				<?php foreach($result as $profile_item):?>
+				<?php foreach($users as $profile_item):?>
 				
                     <div class="col-md-8">
                         <div class="form-group">

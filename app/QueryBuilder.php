@@ -31,19 +31,14 @@ class queryBuilder
 		return $result;
 	}
 
-	
-
-	public function getAllComments($cols, $table1, $table2, $where1, $where2, $orderBy)
+	public function getAllComments()
 	{
 		$select = $this->queryFactory->newSelect();
 
-		$select
-		->cols($cols)
-    	->from($table1) 
-    	->from($table2) 
-    	->where($where1)
-    	->where($where2)
-    	->orderBy($orderBy);
+		$select->cols(["comments.*", "users.avatar","comments.name"])
+		->from("comments")
+		->leftJoin('users', 'comments.user_id = users.id')
+		->orderBy(['id DESC']);
 
 		// prepare the statment
 		$sth = $this->pdo->prepare($select->getStatement());
@@ -56,4 +51,6 @@ class queryBuilder
 
 		return $result;
 	}
+
+	
 }
