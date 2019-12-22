@@ -1,2 +1,2 @@
 # crudcomponent
-Simple CRUD app made with "packagist" components 
+Simple MVC CRUD project made with "packagist" components 
