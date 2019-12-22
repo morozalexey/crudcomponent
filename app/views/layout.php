@@ -37,14 +37,14 @@
                         <!-- Authentication Links -->
 						<?php if (!isset($_SESSION['user'])): ?>
                             <li class="nav-item">
-                                <a class="nav-link" href="login.php">Login</a>
+                                <a class="nav-link" href="/login">Login</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="register.php">Register</a>
+                                <a class="nav-link" href="/registration">Register</a>
                             </li>
 						<?php else: ?>
                             <li class="nav-item">
-                                <a class="nav-link" href="profile.php"><?=strip_tags($_SESSION['user']['name']); ?></a>
+                                <a class="nav-link" href="/profile"><?=strip_tags($_SESSION['user']['name']); ?></a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="logout.php">Logout</a>
@@ -75,5 +75,3 @@
     </div>
 </body>
 </html>
-
-<?php  ?>

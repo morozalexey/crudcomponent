@@ -1,20 +1,4 @@
-<?php 
-/*
-require '../vendor/autoload.php';
-
-use App\QueryBuilder;
-
-$db = new QueryBuilder();
-
-
-$user_id = $_SESSION['user']['id'];
-
-$users = $db->getAll('users');
-*/
-
-$this->layout('layout', ['title' => 'User Profile']) 
-
-?>
+<?php $this->layout('layout', ['title' => 'User Profile']) ?>
 
 <div class="col-md-12">
     <div class="card">

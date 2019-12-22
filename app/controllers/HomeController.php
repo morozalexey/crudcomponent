@@ -21,7 +21,7 @@ class HomeController {
 
     public function index(){      
         
-        $comments = $this->db->getAllComments();       
+        $comments = $this->db->getAll('comments');       
         
         echo $this->templates->render('homepage', ['comments' => $comments]);       
     }
@@ -33,5 +33,15 @@ class HomeController {
         $users = $this->db->getAll('users');      
         
         echo $this->templates->render('profile', ['users' => $users, 'user_id' => $user_id]);       
+    }
+
+    public function login(){    
+        
+        echo $this->templates->render('login', ['users' => $users, 'user_id' => $user_id]);       
+    }
+
+    public function registration(){    
+        
+        echo $this->templates->render('registration', ['users' => $users, 'user_id' => $user_id]);       
     }
 }
