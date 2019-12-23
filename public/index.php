@@ -4,10 +4,12 @@ if( !session_id() ) @session_start();
 require '../vendor/autoload.php';
 
 $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
-    $r->addRoute('GET', '/', ['App\controllers\HomeController', 'index']);
-    $r->addRoute('GET', '/profile', ['App\controllers\HomeController', 'profile']);
-    $r->addRoute('GET', '/login', ['App\controllers\HomeController', 'login']);
-    $r->addRoute('GET', '/registration', ['App\controllers\HomeController', 'registration']);
+    $r->addRoute('GET', '/', ['App\controllers\PagesController', 'index']);
+    $r->addRoute('GET', '/profile', ['App\controllers\PagesController', 'profile']);
+    $r->addRoute('GET', '/login_page', ['App\controllers\PagesController', 'login_page']);
+    $r->addRoute('GET', '/registration_page', ['App\controllers\PagesController', 'registration_page']);
+    $r->addRoute('POST', '/registration', ['App\controllers\MainController', 'registration']);
+    $r->addRoute('POST', '/login', ['App\controllers\MainController', 'login']);
 });
 
 // Fetch method and URI from somewhere

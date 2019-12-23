@@ -9,9 +9,14 @@ class ComposerStaticInite611dc8f1df3fdfd9b86585cdfccbd35
     public static $files = array (
         '3917c79c5052b270641b5a200963dbc2' => __DIR__ . '/..' . '/kint-php/kint/init.php',
         '253c157292f75eb38082b5acb06f3f01' => __DIR__ . '/..' . '/nikic/fast-route/src/functions.php',
+        '6157b075b923803e5ef157aeb43b83bd' => __DIR__ . '/..' . '/tamtamchik/simple-flash/src/function.php',
     );
 
     public static $prefixLengthsPsr4 = array (
+        'T' => 
+        array (
+            'Tamtamchik\\SimpleFlash\\' => 23,
+        ),
         'L' => 
         array (
             'League\\Plates\\' => 14,
@@ -40,6 +45,10 @@ class ComposerStaticInite611dc8f1df3fdfd9b86585cdfccbd35
     );
 
     public static $prefixDirsPsr4 = array (
+        'Tamtamchik\\SimpleFlash\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/tamtamchik/simple-flash/src',
+        ),
         'League\\Plates\\' => 
         array (
             0 => __DIR__ . '/..' . '/league/plates/src',
@@ -82,11 +91,16 @@ class ComposerStaticInite611dc8f1df3fdfd9b86585cdfccbd35
         ),
     );
 
+    public static $classMap = array (
+        'SimpleMail' => __DIR__ . '/..' . '/eoghanobrien/php-simple-mail/class.simple_mail.php',
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInite611dc8f1df3fdfd9b86585cdfccbd35::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInite611dc8f1df3fdfd9b86585cdfccbd35::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInite611dc8f1df3fdfd9b86585cdfccbd35::$classMap;
 
         }, null, ClassLoader::class);
     }

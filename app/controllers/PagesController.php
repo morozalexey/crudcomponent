@@ -6,17 +6,21 @@ use App\QueryBuilder;
 
 use League\Plates\Engine;
 
+use \Tamtamchik\SimpleFlash\Flash;
+
 use PDO;
 
-class HomeController {
+class PagesController {
 
     protected $templates;
     protected $db;
+    protected $auth;
+    protected $validator;
 
     public function __construct()
     {
         $this->templates = new Engine('../app/views');
-        $this->db = new QueryBuilder();
+        $this->db = new QueryBuilder();       
     }
 
     public function index(){      
@@ -35,13 +39,13 @@ class HomeController {
         echo $this->templates->render('profile', ['users' => $users, 'user_id' => $user_id]);       
     }
 
-    public function login(){    
-        
-        echo $this->templates->render('login', ['users' => $users, 'user_id' => $user_id]);       
+    public function registration_page(){
+
+        echo $this->templates->render('registration');
     }
 
-    public function registration(){    
-        
-        echo $this->templates->render('registration', ['users' => $users, 'user_id' => $user_id]);       
-    }
+     public function login_page(){
+
+        echo $this->templates->render('login');
+    } 
 }

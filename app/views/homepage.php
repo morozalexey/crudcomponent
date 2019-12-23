@@ -29,7 +29,7 @@
 
         <div class="card-body">
             <form action="add-comment.php" method="post">                       
-            <div class="alert alert-success" role="alert">Чтобы оставлять комментарии <a href="login.php">авторизуйтесь</a> </div>
+            <div class="alert alert-success" role="alert">Чтобы оставлять комментарии <a href="/login_page">авторизуйтесь</a> </div>
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Имя</label>
                     <input name="name" class="form-control" id="exampleFormControlTextarea1" />

@@ -14,6 +14,10 @@
 
     <!-- Styles -->
     <link href="css/app.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
 </head>
 <body>
     <div id="app">
@@ -37,24 +41,24 @@
                         <!-- Authentication Links -->
 						<?php if (!isset($_SESSION['user'])): ?>
                             <li class="nav-item">
-                                <a class="nav-link" href="/login">Login</a>
+                                <a class="nav-link" href="/login_page">Login</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/registration">Register</a>
+                                <a class="nav-link" href="/registration_page">Register</a>
                             </li>
 						<?php else: ?>
                             <li class="nav-item">
                                 <a class="nav-link" href="/profile"><?=strip_tags($_SESSION['user']['name']); ?></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="logout.php">Logout</a>
+                                <a class="nav-link" href="/logout">Logout</a>
                             </li>
 						<?php endif; ?>	
 						
 						<?php if ( isset($_SESSION['user']) AND ($admin_result['admin'] == '0') ): ?>
                         <?php elseif ( isset($_SESSION['user']) AND ($admin_result['admin'] == 'admin') ) : ?>
 						<li class="nav-item">
-							<a class="nav-link" href="admin.php">Admin</a>
+							<a class="nav-link" href="/admin">Admin</a>
                         </li>
 						<?php endif; ?>	
 						
