@@ -11,7 +11,7 @@ use \Tamtamchik\SimpleFlash\Flash;
 
 use SimpleMail;
 
-//use Valitron\Validator;
+use Valitron\Validator;
 
 use PDO;
 
@@ -20,7 +20,7 @@ class MainController {
     protected $templates;
     protected $db;
     protected $auth;
-    protected $validator;
+    protected $v;
 
     public function __construct()
     {
@@ -28,9 +28,7 @@ class MainController {
         $this->db = new QueryBuilder();
         $db = new PDO('mysql:host=localhost;dbname=marlin', 'mysql', 'mysql');
         $this->auth = new \Delight\Auth\Auth($db);
-
-        //$this->validator = new Validator($_POST);
-        
+        $this->v = $v;        
     } 
 
     public function registration(){ 
