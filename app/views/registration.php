@@ -5,6 +5,7 @@
         <div class="card-header">Register</div>
 
         <div class="card-body">
+            <?php echo flash()->display();?>
             <form method="POST" action="/registration">
 
                 <div class="form-group row">
@@ -33,7 +34,7 @@
                     <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
 
                     <div class="col-md-6">
-                        <input id="password" type="password" class="form-control <?= isset($errors['password']) ? "@error('name') is-invalid @enderror" : "" ; ?>" " name="password"  autocomplete="new-password">
+                        <input id="password" type="password" class="form-control <?= isset($errors['password']) ? "@error('name') is-invalid @enderror" : "" ; ?>" name="password"  autocomplete="new-password">
                         <span class="invalid-feedback" role="alert">
                             <strong><?= isset($errors['password']) ? $errors['password'] : "" ; ?></strong>
                         </span>                                            

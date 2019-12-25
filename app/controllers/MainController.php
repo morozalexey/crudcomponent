@@ -1,5 +1,4 @@
 <?php
-
 namespace App\controllers;
 
 use App\QueryBuilder;
@@ -47,6 +46,7 @@ class MainController {
             exit();
         }
         */
+
         $flash = new Flash();
 
         try {
@@ -58,7 +58,6 @@ class MainController {
             ->setMessage('https://www.example.com/verify_email?selector=' . \urlencode($selector) . '&token=' . \urlencode($token))
             ->send();
         });
-
         flash()->success('We have signed up a new user with the ID: ' . $userId);
             header("Location: /login_page");
             exit();
@@ -84,7 +83,7 @@ class MainController {
     public function login(){  
 
         try {
-        $auth->login($_POST['email'], $_POST['password']);
+        $this->auth->login($_POST['email'], $_POST['password']);
 
         header("Location: /");
             exit();
@@ -136,19 +135,5 @@ class MainController {
         }
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

@@ -70,7 +70,7 @@
         <main class="py-4">
             <div class="container">
                 <div class="row justify-content-center">
-
+                    <?php echo flash()->display();?>
                     <?=$this->section('content')?>                    
 
                 </div>

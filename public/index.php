@@ -29,7 +29,7 @@ switch ($routeInfo[0]) {
         break;
     case FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
         $allowedMethods = $routeInfo[1];
-        echo "405 Method Not Allowed";
+        echo "405 Method Not Allowed";       
         break;
     case FastRoute\Dispatcher::FOUND:
         $handler = $routeInfo[1];
