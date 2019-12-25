@@ -55,10 +55,10 @@ class MainController {
             ->setTo($_POST['email'], $_POST['name'])
             ->setFrom('abuelofrio@yandex.ru', 'Alexey')
             ->setSubject('Registration')
-            ->setMessage('https://www.example.com/verify_email?selector=' . \urlencode($selector) . '&token=' . \urlencode($token))
+            ->setMessage('https://www.your_cite_adress.com/verify_email?selector=' . \urlencode($selector) . '&token=' . \urlencode($token))
             ->send();
         });
-        flash()->success('We have signed up a new user with the ID: ' . $userId);
+        flash()->success('We have signed you up! We also ask you to veryfy your email adress. Just check you mail and click the link. This will provide you acsees to our  site.');
             header("Location: /login_page");
             exit();
         }
@@ -118,8 +118,7 @@ class MainController {
 
         try {
         $this->auth->confirmEmail($_GET['selector'], $_GET['token']);
-
-            echo 'Email address has been verified';
+            flash()->success('Email address has been verified');
         }
         catch (\Delight\Auth\InvalidSelectorTokenPairException $e) {
             flash()->error('Invalid token');
@@ -134,6 +133,8 @@ class MainController {
             flash()->error('Too many requests');
         }
 
+        header("Location: /login_page");
+        exit();
     }
 
 }
