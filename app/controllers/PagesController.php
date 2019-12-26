@@ -32,11 +32,9 @@ class PagesController {
 
     public function profile(){   
           
-        $user_id = $_SESSION['user']['id'];
-
-        $users = $this->db->getAll('users');      
+        $users = $this->db->getOne('users', $_SESSION['auth_user_id']);     
         
-        echo $this->templates->render('profile', ['users' => $users, 'user_id' => $user_id]);       
+        echo $this->templates->render('profile', ['users' => $users]);       
     }
 
     public function registration_page(){

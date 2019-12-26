@@ -5,16 +5,16 @@
         <div class="card-header"><h3>Профиль пользователя</h3></div>
 
         <div class="card-body">
-          <?= $messageProfile ?>
+          <?php echo flash()->display();?>
 
             <form action="profile-edit.php" method="POST" enctype="multipart/form-data">
                 <div class="row">
-				<?php foreach($users as $profile_item):?>
+				<?php var_dump($user);//foreach($users as $user):?>
 				
                     <div class="col-md-8">
                         <div class="form-group">
                             <label for="exampleFormControlInput1">Name</label>
-                            <input type="text" class="form-control <?= isset($_SESSION['errors']['name']) ? "@error('name') is-invalid @enderror" : "" ; ?>" name="name" id="exampleFormControlInput1" value="<?= $profile_item['name'] ?>"> 
+                            <input type="text" class="form-control <?= isset($_SESSION['errors']['name']) ? "@error('name') is-invalid @enderror" : "" ; ?>" name="name" id="exampleFormControlInput1" value="<?= $_SESSION['auth_username'] ?>"> 
                             <span class="text text-danger">
                                 <?= isset($_SESSION['errors']['name']) ? $_SESSION['errors']['name'] : "" ; ?>
                             </span>                                          
@@ -22,7 +22,7 @@
 
                         <div class="form-group">
                             <label for="exampleFormControlInput1">Email</label>
-                            <input type="text" class="form-control <?= isset($_SESSION['errors']['email']) ? "@error('name') is-invalid @enderror" : "" ; ?>" name="email" id="exampleFormControlInput1" value="<?= $profile_item['email'] ?>">
+                            <input type="text" class="form-control <?= isset($_SESSION['errors']['email']) ? "@error('name') is-invalid @enderror" : "" ; ?>" name="email" id="exampleFormControlInput1" value="<?= $_SESSION['auth_email'] ?>">
                             <span class="text text-danger">
                                 <?= isset($_SESSION['errors']['email']) ? $_SESSION['errors']['email'] : "" ; ?>
                             </span>
@@ -38,10 +38,10 @@
                     </div>
 					
                     <div class="col-md-4">
-                        <img src="<?= $profile_item['avatar'] ?>" alt="" class="img-fluid">
+                        <img src="<?= $user['avatar'] ?>" alt="" class="img-fluid">
                     </div>
 					
-				<?php endforeach; ?>	
+				<?php //endforeach; ?>	
                     <div class="col-md-12">
                         <button class="btn btn-warning">Edit profile</button>
                     </div>
@@ -56,7 +56,7 @@
         <div class="card-header"><h3>Безопасность</h3></div>
 
         <div class="card-body">
-            <?= $messagePassword ?>
+            <?php echo flash()->display();?>
 
             <form action="password-edit.php" method="post">
                 <div class="row">

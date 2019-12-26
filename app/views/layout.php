@@ -39,7 +39,7 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
-						<?php if (!isset($_SESSION['user'])): ?>
+						<?php if (!$_SESSION['auth_logged_in']) :?>
                             <li class="nav-item">
                                 <a class="nav-link" href="/login_page">Login</a>
                             </li>
@@ -48,19 +48,19 @@
                             </li>
 						<?php else: ?>
                             <li class="nav-item">
-                                <a class="nav-link" href="/profile"><?=strip_tags($_SESSION['user']['name']); ?></a>
+                                <a class="nav-link" href="/profile"><?= ($_SESSION['auth_username']); ?></a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/logout">Logout</a>
                             </li>
 						<?php endif; ?>	
 						
-						<?php if ( isset($_SESSION['user']) AND ($admin_result['admin'] == '0') ): ?>
-                        <?php elseif ( isset($_SESSION['user']) AND ($admin_result['admin'] == 'admin') ) : ?>
+						<?php if ($_SESSION['auth_roles'] == 1) :?>
 						<li class="nav-item">
 							<a class="nav-link" href="/admin">Admin</a>
                         </li>
 						<?php endif; ?>	
+                        <?php //var_dump($_COOKIE);?>
 						
                     </ul>
                 </div>

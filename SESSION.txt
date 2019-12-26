@@ -1,0 +1,16 @@
+
+array(10) 
+{ 
+
+["flash_messages"]=> array(0) { } 
+["auth_logged_in"]=> bool(true) 
+["auth_user_id"]=> int(10) 
+["auth_email"]=> string(24) "alexey.moroz87@gmail.com" 
+["auth_username"]=> string(14) "Алексей" 
+["auth_status"]=> int(0) 
+["auth_roles"]=> int(1) 
+["auth_force_logout"]=> int(0) 
+["auth_remembered"]=> bool(false) 
+["auth_last_resync"]=> int(1577367268) 
+
+} 

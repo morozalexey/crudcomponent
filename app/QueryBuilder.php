@@ -52,5 +52,21 @@ class queryBuilder
 		return $result;
 	}
 
+	public function getOne($table, $id) 
+    {
+        $select = $this->queryFactory->newSelect();
+        $select->cols(["*"])
+            ->from($table)
+            ->where('id = :id')
+            ->bindValue('id',$id);
+        $sth = $this->pdo->prepare($select->getStatement());
+        // bind the values and execute
+        $sth->execute($select->getBindValues());
+        
+        // get the results back as an associative array
+        
+        return $sth->fetch(PDO::FETCH_ASSOC);
+    }
+
 	
 }

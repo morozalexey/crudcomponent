@@ -28,8 +28,9 @@
         <div class="card-header"><h3>Оставить комментарий</h3></div>
 
         <div class="card-body">
-            <form action="add-comment.php" method="post">                       
-            <div class="alert alert-success" role="alert">Чтобы оставлять комментарии <a href="/login_page">авторизуйтесь</a> </div>
+            <?php if (!$_SESSION['auth_logged_in']) :?> 
+            <form action="" method="post">                                 
+                <div class="alert alert-success" role="alert">Чтобы оставлять комментарии <a href="/login_page">авторизуйтесь</a> </div>
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Имя</label>
                     <input name="name" class="form-control" id="exampleFormControlTextarea1" />
@@ -42,6 +43,16 @@
                 </div>
                 <div class="btn btn-success">Отправить</div>                                
             </form>
+            <?php else: ?>
+            <form action="/add_comment" method="post">                               
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Сообщение</label>
+                    <textarea name="text" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <p><?= $textErrorMessage ?></p>
+                </div>
+                <button type="submit" class="btn btn-success">Отправить</button>                                
+            </form>
+            <?php endif; ?>     
         </div>
     </div>
 </div>

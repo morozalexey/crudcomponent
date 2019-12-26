@@ -80,8 +80,17 @@ class MainController {
 
     public function login(){  
 
+        if ($_POST['remember'] == 1) {
+            // keep logged in for one year
+            $rememberDuration = (int) (60 * 60 * 24 * 365.25);
+        }
+        else {
+            // do not keep logged in after session ends
+            $rememberDuration = null;
+        }
+        
         try {
-        $this->auth->login($_POST['email'], $_POST['password']);
+        $this->auth->login($_POST['email'], $_POST['password'], $rememberDuration);
 
         header("Location: /");
             exit();
