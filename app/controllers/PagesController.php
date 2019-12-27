@@ -17,15 +17,14 @@ class PagesController {
     protected $auth;
     protected $validator;
 
-    public function __construct()
-    {
+    public function __construct(){
         $this->templates = new Engine('../app/views');
         $this->db = new QueryBuilder();       
     }
 
     public function index(){      
         
-        $comments = $this->db->getAll('comments');       
+        $comments = $this->db->getAllComments('comments');       
         
         echo $this->templates->render('homepage', ['comments' => $comments]);       
     }
@@ -42,8 +41,15 @@ class PagesController {
         echo $this->templates->render('registration');
     }
 
-     public function login_page(){
+    public function login_page(){
 
         echo $this->templates->render('login');
+    } 
+
+    public function admin(){
+
+        $comments = $this->db->getAll('comments');
+
+        echo $this->templates->render('admin', ['comments' => $comments]);
     } 
 }

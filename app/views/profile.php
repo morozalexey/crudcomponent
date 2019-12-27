@@ -8,13 +8,12 @@
           <?php echo flash()->display();?>
 
             <form action="profile-edit.php" method="POST" enctype="multipart/form-data">
-                <div class="row">
-				<?php var_dump($user);//foreach($users as $user):?>
+                <div class="row">			
 				
                     <div class="col-md-8">
                         <div class="form-group">
                             <label for="exampleFormControlInput1">Name</label>
-                            <input type="text" class="form-control <?= isset($_SESSION['errors']['name']) ? "@error('name') is-invalid @enderror" : "" ; ?>" name="name" id="exampleFormControlInput1" value="<?= $_SESSION['auth_username'] ?>"> 
+                            <input type="text" class="form-control <?= isset($_SESSION['errors']['name']) ? "@error('name') is-invalid @enderror" : "" ; ?>" name="name" id="exampleFormControlInput1" value="<?= $users['username'] ?>"> 
                             <span class="text text-danger">
                                 <?= isset($_SESSION['errors']['name']) ? $_SESSION['errors']['name'] : "" ; ?>
                             </span>                                          
@@ -22,7 +21,7 @@
 
                         <div class="form-group">
                             <label for="exampleFormControlInput1">Email</label>
-                            <input type="text" class="form-control <?= isset($_SESSION['errors']['email']) ? "@error('name') is-invalid @enderror" : "" ; ?>" name="email" id="exampleFormControlInput1" value="<?= $_SESSION['auth_email'] ?>">
+                            <input type="text" class="form-control <?= isset($_SESSION['errors']['email']) ? "@error('name') is-invalid @enderror" : "" ; ?>" name="email" id="exampleFormControlInput1" value="<?= $users['email'] ?>">
                             <span class="text text-danger">
                                 <?= isset($_SESSION['errors']['email']) ? $_SESSION['errors']['email'] : "" ; ?>
                             </span>
@@ -38,10 +37,9 @@
                     </div>
 					
                     <div class="col-md-4">
-                        <img src="<?= $user['avatar'] ?>" alt="" class="img-fluid">
+                        <img src="<?= $users['avatar'] ?>" alt="" class="img-fluid">
                     </div>
-					
-				<?php //endforeach; ?>	
+						
                     <div class="col-md-12">
                         <button class="btn btn-warning">Edit profile</button>
                     </div>

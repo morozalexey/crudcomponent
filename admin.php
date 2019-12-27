@@ -78,6 +78,7 @@ $admin_result = $admin_role->fetch(PDO::FETCH_ASSOC);
         <main class="py-4">
             <div class="container">
                 <div class="row justify-content-center">
+                    
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header"><h3>Админ панель</h3></div>
@@ -120,6 +121,7 @@ $admin_result = $admin_role->fetch(PDO::FETCH_ASSOC);
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </main>

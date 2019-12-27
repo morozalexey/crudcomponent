@@ -5,8 +5,7 @@
 	 <div class="card">
 	    <div class="card-header"><h3>Комментарии</h3></div>
 
-	    <div class="card-body">
-	      <?= $messageSuccess ?>
+	    <div class="card-body">	      
 		<?php foreach($comments as $comment):?>								  
 	        <div class="media">	        	
 	          <img src="<?= $comment['avatar'] ;?>" class="mr-3" alt="..." width="64" height="64"> 		
@@ -34,21 +33,18 @@
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Имя</label>
                     <input name="name" class="form-control" id="exampleFormControlTextarea1" />
-                    <p><?= $nameErrorMessage ?></p>
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Сообщение</label>
                     <textarea name="text" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                    <p><?= $textErrorMessage ?></p>
                 </div>
                 <div class="btn btn-success">Отправить</div>                                
             </form>
             <?php else: ?>
-            <form action="/add_comment" method="post">                               
+            <form action="new_сomment" method="post">                               
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Сообщение</label>
-                    <textarea name="text" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                    <p><?= $textErrorMessage ?></p>
+                    <textarea name="text" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>               
                 </div>
                 <button type="submit" class="btn btn-success">Отправить</button>                                
             </form>

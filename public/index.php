@@ -12,6 +12,11 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('POST', '/login', ['App\controllers\MainController', 'login']);
     $r->addRoute('GET', '/logout', ['App\controllers\MainController', 'logout']);
     $r->addRoute('GET', '/verify_email', ['App\controllers\MainController','email_verification']);
+    $r->addRoute('GET', '/admin', ['App\controllers\PagesController', 'admin']);
+    $r->addRoute('GET', '/show', ['App\controllers\MainController', 'show']);
+    $r->addRoute('GET', '/hide', ['App\controllers\MainController', 'hide']);
+    $r->addRoute('GET', '/delete', ['App\controllers\MainController', 'delete']);
+    $r->addRoute('POST', '/new_сomment', ['App\controllers\MainController', 'new_сomment']);
 });
 
 // Fetch method and URI from somewhere

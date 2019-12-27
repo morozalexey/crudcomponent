@@ -88,7 +88,7 @@ class MainController {
             // do not keep logged in after session ends
             $rememberDuration = null;
         }
-        
+
         try {
         $this->auth->login($_POST['email'], $_POST['password'], $rememberDuration);
 
@@ -141,6 +141,50 @@ class MainController {
         }
 
         header("Location: /login_page");
+        exit();
+    }
+
+        public function new_сomment()
+    {
+        if (empty($_POST['text'])) {
+            flash()->error('Text is required');
+            header("Location: /");
+            exit();
+        }
+        $this->db->insert('comments', [
+            'user_id' => $_SESSION['auth_user_id'],
+            'text' => $_POST['text'],
+            'name' => $_SESSION['auth_username'],
+            'hide' => 1,
+            'dt_add' => date('Y-m-d')
+        ]);
+        flash()->success('Comment added');
+        header("Location: /");
+        exit();
+    }
+
+
+        public function show()
+    {
+        $id = $_GET['id'];
+        $this->db->update('comments',$id, ['hide' => 1]);
+        header("Location: /admin");
+        exit();
+    }
+
+    public function hide()
+    {        
+        $id = $_GET['id'];
+        $this->db->update('comments', $id, ['hide' => 0]);
+        header("Location: /admin");
+        exit();
+    }
+
+    public function delete()
+    {        
+        $id = $_GET['id'];
+        $this->db->delete('comments', $id);
+        header("Location: /admin");
         exit();
     }
 
