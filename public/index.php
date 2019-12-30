@@ -45,38 +45,3 @@ switch ($routeInfo[0]) {
         call_user_func([$controller, $handler[1]], $vars);
         break;
 }
-
-
-
-
-/*
-
-$sql = "SELECT comments.dt_add, comments.name, comments.text, users.avatar FROM comments, users WHERE users.id = comments.user_id AND show_comment=1 ORDER BY comments.dt_add DESC";
-$stmt = $pdo->prepare($sql);
-$stmt->execute();
-$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-if ($_SESSION['messageSuccess']) {
-    $messageSuccess = "<div class=\"alert alert-success\" role=\"alert\">Комментарий успешно добавлен </div>";
-  unset($_SESSION['messageSuccess']);
-}
-
-if ($_SESSION ['textErrorMessage']){
-    $textErrorMessage = "<div class=\"alert alert-danger\" role=\"alert\">Это поле надо заполнить</div>";
-    unset($_SESSION['textErrorMessage']);
-}
-
-if ($_SESSION ['nameErrorMessage']){
-    $nameErrorMessage = "<div class=\"alert alert-danger\" role=\"alert\">Это поле надо заполнить</div>";
-    unset($_SESSION['nameErrorMessage']);
-}
-
-$user_id = $_SESSION['user']['id'];
-
-$admin_role = $pdo->prepare("SELECT * FROM users WHERE id =?");
-$admin_role->execute([$user_id]); 
-$admin_result = $admin_role->fetch(PDO::FETCH_ASSOC);
-
-?>
-
-*/

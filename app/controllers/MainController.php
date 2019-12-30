@@ -11,7 +11,7 @@ use \Tamtamchik\SimpleFlash\Flash;
 
 use SimpleMail;
 
-use Valitron\Validator;
+use Aura\Filter\FilterFactory;
 
 use PDO;
 
@@ -20,7 +20,6 @@ class MainController {
     protected $templates;
     protected $db;
     protected $auth;
-    protected $v;
 
     public function __construct()
     {
@@ -28,24 +27,48 @@ class MainController {
         $this->db = new QueryBuilder();
         $db = new PDO('mysql:host=localhost;dbname=marlin', 'mysql', 'mysql');
         $this->auth = new \Delight\Auth\Auth($db);
-        $this->v = $v;        
     } 
 
-    public function registration(){ 
+    public function registration(){
+
+        $filter = (new FilterFactory)->newSubjectFilter();
+
+        $filter->validate($_POST['name'])
+        ->isNotBlank()
+        ->setMessage('Поле не должно быть пустым');
+
+        $filter->validate('email')
+        ->isNotBlank()
+        ->is('email')
+        ->setMessage('Пожалуйста, напишите корректный адрес эл. почты.');
+
+        $filter->validate('password')
+        ->isNotBlank()
+        ->is('strlenMin', 6)
+        ->setMessage('Пароль должен быть не меньше 6 символов');
+
+        $filter->validate('password_confirmation')
+        ->isNotBlank()
+        ->is('strlenMin', 6)
+        ->is('strictEqualToField', 'password_confirmation')
+        ->setMessage('Пароли не совпадают');
+
     	/*
-        $this->v->rule('required', ['password', 'password_confirmation']);
-        $this->v->rule('equals', 'password', 'password_confirmation');
-        if(!$this->v->validate()) {
-            // Errors
-            foreach ($this->v->errors() as $error) {
+        $v = new Valitron\Validator($_POST);
+
+        $v->rule('required', ['name', 'email', 'password', 'password_confirmation']);
+        $v->rule('email', 'email');
+        $v->rule('equals', 'password', 'password_confirmation');
+        $v->rule('length', 'password', 6);
+        if(!$v->validate()) {
+            foreach ($v->errors() as $error) {
                 flash()->error($error);
             }
-            header("Location: /profile");
+            header("Location: /login_page");
             exit();
         }
         */
-
-        $flash = new Flash();
+        
 
         try {
         $userId = $this->auth->register($_POST['email'], $_POST['password'], $_POST['name'], function ($selector, $token) {
@@ -56,7 +79,7 @@ class MainController {
             ->setMessage('https://www.your_cite_adress.com/verify_email?selector=' . \urlencode($selector) . '&token=' . \urlencode($token))
             ->send();
         });
-        flash()->success('We have signed you up! We also ask you to veryfy your email adress. Just check you mail and click the link. This will provide you acsees to our  site.');
+        flash()->success('We have signed you up! Please veryfy your email adress. Just check you mail and click the link. This will provide you acsees to our  site.');
             header("Location: /login_page");
             exit();
         }

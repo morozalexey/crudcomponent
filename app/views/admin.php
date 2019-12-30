@@ -27,9 +27,9 @@
                         <td><?= $comment['dt_add'] ?></td>
                         <td><?= $comment['text'] ?></td>
                         <td>	
-							<?php if ($comment['hide'] = 0) : ?>
-                            <a href="/show?id=<?= $comment['id'] ?>" class="btn btn-success">Разрешить</a>
-							<?php elseif ($comment['hide'] = 1) : ?>
+							<?php if ($comment['hide'] != 1) : ?>
+                            <a href="/show?id=<?= $comment['id'] ?>" class="btn btn-success">Разрешить</a>							
+							<?php else : ?>
                             <a href="/hide?id=<?= $comment['id'] ?>" class="btn btn-warning">Запретить</a>
 							<?php endif ; ?>
                             <a href="/delete?id=<?= $comment['id'] ?>" onclick="return confirm('are you sure?')" class="btn btn-danger">Удалить</a>

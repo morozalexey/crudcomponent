@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Valitron\\' => array($vendorDir . '/vlucas/valitron/src/Valitron'),
     'Tamtamchik\\SimpleFlash\\' => array($vendorDir . '/tamtamchik/simple-flash/src'),
     'League\\Plates\\' => array($vendorDir . '/league/plates/src'),
     'Kint\\' => array($vendorDir . '/kint-php/kint/src'),
@@ -16,5 +17,7 @@ return array(
     'Delight\\Base64\\' => array($vendorDir . '/delight-im/base64/src'),
     'Delight\\Auth\\' => array($vendorDir . '/delight-im/auth/src'),
     'Aura\\SqlQuery\\' => array($vendorDir . '/aura/sqlquery/src'),
+    'Aura\\Filter\\_Config\\' => array($vendorDir . '/aura/filter/config'),
+    'Aura\\Filter\\' => array($vendorDir . '/aura/filter/src'),
     'App\\' => array($baseDir . '/app'),
 );

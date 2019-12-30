@@ -13,6 +13,10 @@ class ComposerStaticInite611dc8f1df3fdfd9b86585cdfccbd35
     );
 
     public static $prefixLengthsPsr4 = array (
+        'V' => 
+        array (
+            'Valitron\\' => 9,
+        ),
         'T' => 
         array (
             'Tamtamchik\\SimpleFlash\\' => 23,
@@ -40,11 +44,17 @@ class ComposerStaticInite611dc8f1df3fdfd9b86585cdfccbd35
         'A' => 
         array (
             'Aura\\SqlQuery\\' => 14,
+            'Aura\\Filter\\_Config\\' => 20,
+            'Aura\\Filter\\' => 12,
             'App\\' => 4,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
+        'Valitron\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/vlucas/valitron/src/Valitron',
+        ),
         'Tamtamchik\\SimpleFlash\\' => 
         array (
             0 => __DIR__ . '/..' . '/tamtamchik/simple-flash/src',
@@ -84,6 +94,14 @@ class ComposerStaticInite611dc8f1df3fdfd9b86585cdfccbd35
         'Aura\\SqlQuery\\' => 
         array (
             0 => __DIR__ . '/..' . '/aura/sqlquery/src',
+        ),
+        'Aura\\Filter\\_Config\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/aura/filter/config',
+        ),
+        'Aura\\Filter\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/aura/filter/src',
         ),
         'App\\' => 
         array (

@@ -40,7 +40,7 @@
                         </span>                                            
                     </div>
                 </div>
-                <!--
+                
                 <div class="form-group row">
                     <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Confirm Password</label>
 
@@ -51,7 +51,7 @@
                         </span>
                     </div>
                 </div>
-                -->
+                
 
                 <div class="form-group row mb-0">
                     <div class="col-md-6 offset-md-4">
