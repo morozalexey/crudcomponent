@@ -29,46 +29,7 @@ class MainController {
         $this->auth = new \Delight\Auth\Auth($db);
     } 
 
-    public function registration(){
-
-        $filter = (new FilterFactory)->newSubjectFilter();
-
-        $filter->validate($_POST['name'])
-        ->isNotBlank()
-        ->setMessage('Поле не должно быть пустым');
-
-        $filter->validate('email')
-        ->isNotBlank()
-        ->is('email')
-        ->setMessage('Пожалуйста, напишите корректный адрес эл. почты.');
-
-        $filter->validate('password')
-        ->isNotBlank()
-        ->is('strlenMin', 6)
-        ->setMessage('Пароль должен быть не меньше 6 символов');
-
-        $filter->validate('password_confirmation')
-        ->isNotBlank()
-        ->is('strlenMin', 6)
-        ->is('strictEqualToField', 'password_confirmation')
-        ->setMessage('Пароли не совпадают');
-
-    	/*
-        $v = new Valitron\Validator($_POST);
-
-        $v->rule('required', ['name', 'email', 'password', 'password_confirmation']);
-        $v->rule('email', 'email');
-        $v->rule('equals', 'password', 'password_confirmation');
-        $v->rule('length', 'password', 6);
-        if(!$v->validate()) {
-            foreach ($v->errors() as $error) {
-                flash()->error($error);
-            }
-            header("Location: /login_page");
-            exit();
-        }
-        */
-        
+    public function registration(){        
 
         try {
         $userId = $this->auth->register($_POST['email'], $_POST['password'], $_POST['name'], function ($selector, $token) {
