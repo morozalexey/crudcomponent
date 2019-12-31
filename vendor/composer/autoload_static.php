@@ -7,19 +7,24 @@ namespace Composer\Autoload;
 class ComposerStaticInite611dc8f1df3fdfd9b86585cdfccbd35
 {
     public static $files = array (
+        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '3917c79c5052b270641b5a200963dbc2' => __DIR__ . '/..' . '/kint-php/kint/init.php',
         '253c157292f75eb38082b5acb06f3f01' => __DIR__ . '/..' . '/nikic/fast-route/src/functions.php',
         '6157b075b923803e5ef157aeb43b83bd' => __DIR__ . '/..' . '/tamtamchik/simple-flash/src/function.php',
     );
 
     public static $prefixLengthsPsr4 = array (
-        'V' => 
-        array (
-            'Valitron\\' => 9,
-        ),
         'T' => 
         array (
             'Tamtamchik\\SimpleFlash\\' => 23,
+        ),
+        'S' => 
+        array (
+            'Symfony\\Polyfill\\Mbstring\\' => 26,
+        ),
+        'R' => 
+        array (
+            'Respect\\Validation\\' => 19,
         ),
         'L' => 
         array (
@@ -51,13 +56,17 @@ class ComposerStaticInite611dc8f1df3fdfd9b86585cdfccbd35
     );
 
     public static $prefixDirsPsr4 = array (
-        'Valitron\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/vlucas/valitron/src/Valitron',
-        ),
         'Tamtamchik\\SimpleFlash\\' => 
         array (
             0 => __DIR__ . '/..' . '/tamtamchik/simple-flash/src',
+        ),
+        'Symfony\\Polyfill\\Mbstring\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
+        ),
+        'Respect\\Validation\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/respect/validation/library',
         ),
         'League\\Plates\\' => 
         array (

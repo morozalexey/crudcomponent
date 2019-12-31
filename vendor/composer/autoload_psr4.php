@@ -6,8 +6,9 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Valitron\\' => array($vendorDir . '/vlucas/valitron/src/Valitron'),
     'Tamtamchik\\SimpleFlash\\' => array($vendorDir . '/tamtamchik/simple-flash/src'),
+    'Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),
+    'Respect\\Validation\\' => array($vendorDir . '/respect/validation/library'),
     'League\\Plates\\' => array($vendorDir . '/league/plates/src'),
     'Kint\\' => array($vendorDir . '/kint-php/kint/src'),
     'FastRoute\\' => array($vendorDir . '/nikic/fast-route/src'),

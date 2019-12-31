@@ -2,6 +2,7 @@
 namespace App;
 
 use Aura\SqlQuery\QueryFactory;
+
 use PDO;
 
 class queryBuilder 
@@ -34,7 +35,7 @@ class queryBuilder
 	public function getAllComments()
 	{		
 		$select = $this->queryFactory->newSelect();
-		
+
 		$select->cols(["comments.*", "users.avatar"])
 		->from("comments")
 		->leftJoin("users", "comments.user_id = users.id")

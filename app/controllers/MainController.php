@@ -11,7 +11,7 @@ use \Tamtamchik\SimpleFlash\Flash;
 
 use SimpleMail;
 
-use Aura\Filter\FilterFactory;
+use Respect\Validation\Validator as v;
 
 use PDO;
 
@@ -29,36 +29,130 @@ class MainController {
         $this->auth = new \Delight\Auth\Auth($db);
     } 
 
-    public function registration(){        
+    public function registration(){   
 
-        try {
-        $userId = $this->auth->register($_POST['email'], $_POST['password'], $_POST['name'], function ($selector, $token) {
-            SimpleMail::make()
-            ->setTo($_POST['email'], $_POST['name'])
-            ->setFrom('abuelofrio@yandex.ru', 'Alexey')
-            ->setSubject('Registration')
-            ->setMessage('https://www.your_cite_adress.com/verify_email?selector=' . \urlencode($selector) . '&token=' . \urlencode($token))
-            ->send();
-        });
-        flash()->success('We have signed you up! Please veryfy your email adress. Just check you mail and click the link. This will provide you acsees to our  site.');
-            header("Location: /login_page");
+        $email = v::email()->validate($_POST['email']);
+
+            if ($email) {
+        
+            try {
+            $userId = $this->auth->register($_POST['email'], $_POST['password'], $_POST['name'], function ($selector, $token) {
+                SimpleMail::make()
+                ->setTo($_POST['email'], $_POST['name'])
+                ->setFrom('abuelofrio@yandex.ru', 'Alexey')
+                ->setSubject('Registration')
+                ->setMessage('https://www.your_cite_adress.com/verify_email?selector=' . \urlencode($selector) . '&token=' . \urlencode($token))
+                ->send();
+            });
+            flash()->success('We have signed you up! Please veryfy your email adress. Just check you mail and click the link. This will provide you acsees to our  site.');
+                header("Location: /login_page");
+                exit();
+            }
+            catch (\Delight\Auth\InvalidEmailException $e) {
+                flash()->error('Invalid email address');
+            }
+            catch (\Delight\Auth\InvalidPasswordException $e) {
+                flash()->error('Invalid password');
+            }
+            catch (\Delight\Auth\UserAlreadyExistsException $e) {
+                flash()->error('User already exists');
+            }
+            catch (\Delight\Auth\TooManyRequestsException $e) {
+                flash()->error('Too many requests');
+            }   
+            
+            header("Location: /registration_page");
+            exit();
+
+        } else {
+
+            flash()->error('Некорректный Email');
+            header("Location: /registration_page");
+            exit();
+        } 
+
+        $length = v::stringType()->length(5, null)->validate($_POST['password']);  
+
+        if ($length) {
+        
+            try {
+            $userId = $this->auth->register($_POST['email'], $_POST['password'], $_POST['name'], function ($selector, $token) {
+                SimpleMail::make()
+                ->setTo($_POST['email'], $_POST['name'])
+                ->setFrom('abuelofrio@yandex.ru', 'Alexey')
+                ->setSubject('Registration')
+                ->setMessage('https://www.your_cite_adress.com/verify_email?selector=' . \urlencode($selector) . '&token=' . \urlencode($token))
+                ->send();
+            });
+            flash()->success('We have signed you up! Please veryfy your email adress. Just check you mail and click the link. This will provide you acsees to our  site.');
+                header("Location: /login_page");
+                exit();
+            }
+            catch (\Delight\Auth\InvalidEmailException $e) {
+                flash()->error('Invalid email address');
+            }
+            catch (\Delight\Auth\InvalidPasswordException $e) {
+                flash()->error('Invalid password');
+            }
+            catch (\Delight\Auth\UserAlreadyExistsException $e) {
+                flash()->error('User already exists');
+            }
+            catch (\Delight\Auth\TooManyRequestsException $e) {
+                flash()->error('Too many requests');
+            }   
+            
+            header("Location: /registration_page");
+            exit();
+
+        } else {
+
+            flash()->error('Пароль не должен быть короче 6 символов');
+            header("Location: /registration_page");
+            exit();
+        }          
+
+        $equals = v::equals($_POST['password'])->validate($_POST['password_confirmation']);
+
+        if ($equals) {
+        
+            try {
+            $userId = $this->auth->register($_POST['email'], $_POST['password'], $_POST['name'], function ($selector, $token) {
+                SimpleMail::make()
+                ->setTo($_POST['email'], $_POST['name'])
+                ->setFrom('abuelofrio@yandex.ru', 'Alexey')
+                ->setSubject('Registration')
+                ->setMessage('https://www.your_cite_adress.com/verify_email?selector=' . \urlencode($selector) . '&token=' . \urlencode($token))
+                ->send();
+            });
+            flash()->success('We have signed you up! Please veryfy your email adress. Just check you mail and click the link. This will provide you acsees to our  site.');
+                header("Location: /login_page");
+                exit();
+            }
+            catch (\Delight\Auth\InvalidEmailException $e) {
+                flash()->error('Invalid email address');
+            }
+            catch (\Delight\Auth\InvalidPasswordException $e) {
+                flash()->error('Invalid password');
+            }
+            catch (\Delight\Auth\UserAlreadyExistsException $e) {
+                flash()->error('User already exists');
+            }
+            catch (\Delight\Auth\TooManyRequestsException $e) {
+                flash()->error('Too many requests');
+            }   
+            
+            header("Location: /registration_page");
+            exit();
+
+        } else {
+
+            flash()->error('Пароли не совпадают');
+            header("Location: /registration_page");
             exit();
         }
-        catch (\Delight\Auth\InvalidEmailException $e) {
-            flash()->error('Invalid email address');
-        }
-        catch (\Delight\Auth\InvalidPasswordException $e) {
-            flash()->error('Invalid password');
-        }
-        catch (\Delight\Auth\UserAlreadyExistsException $e) {
-            flash()->error('User already exists');
-        }
-        catch (\Delight\Auth\TooManyRequestsException $e) {
-            flash()->error('Too many requests');
-        }   
+
         
-        header("Location: /registration_page");
-        exit();     
+     
     }
 
 
@@ -170,6 +264,68 @@ class MainController {
         $this->db->delete('comments', $id);
         header("Location: /admin");
         exit();
+    }
+
+    public function change_password()
+    {
+
+        $equals = v::equals($_POST['new_password'])->validate($_POST['password_confirmation']);
+
+        if ($equals) {
+
+            try {
+                $this->auth->changePassword($_POST['current_password'], $_POST['new_password']);
+                flash()->success('Password has been changed');
+            }
+            catch (\Delight\Auth\NotLoggedInException $e) {
+                flash()->error('Not logged in');
+            }
+            catch (\Delight\Auth\InvalidPasswordException $e) {
+                flash()->error('Invalid password(s)');
+            }
+            catch (\Delight\Auth\TooManyRequestsException $e) {
+                flash()->error('Too many requests');
+            }
+            header("Location: /profile");
+            exit();  
+
+        } else {
+
+            flash()->error('Пароли не совпадают');
+            header("Location: /profile");
+            exit();
+        }        
+        
+    }
+
+    public function edit_profile(){
+
+        $email = v::email()->validate($_POST['email']);
+
+        if ($email) {
+            
+            if ($_POST['email']){
+                $this->db->update('users', $_SESSION['auth_user_id'], ['email' => $_POST['email']]);
+            }
+
+            if (empty($_FILES['image']['tmp_name'])) {
+                $this->db->update('users', $_SESSION['auth_user_id'], ['username' => $_POST['name']]);
+            } else {
+                $image = 'img/'.uniqid().'.jpg';
+                move_uploaded_file($_FILES['image']['tmp_name'], $image);
+                $this->db->update('users', $_SESSION['auth_user_id'], ['username' => $_POST['name'], 'avatar' => $image]);
+            }
+            
+            flash()->success('Profile updated');
+            header("Location: /profile");
+            exit();    
+
+        } else {
+
+            flash()->error('Некорректный Email');
+            header("Location: /profile");
+            exit();
+        } 
     }
 
 }

@@ -7,8 +7,8 @@
         "delight-im/auth": "^8.1",
         "tamtamchik/simple-flash": "^1.2",
         "eoghanobrien/php-simple-mail": "^1.7",
-        "vlucas/valitron": "^1.4",
-        "aura/filter": "^2.3"
+        "aura/filter": "^2.3",
+        "respect/validation": "^1.1"
     },
     "autoload":{
     	"psr-4":{
