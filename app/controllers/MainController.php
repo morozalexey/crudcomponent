@@ -155,7 +155,6 @@ class MainController {
      
     }
 
-
     public function login(){  
 
         if ($_POST['remember'] == 1) {
