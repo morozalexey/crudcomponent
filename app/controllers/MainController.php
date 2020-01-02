@@ -21,12 +21,11 @@ class MainController {
     protected $db;
     protected $auth;
 
-    public function __construct()
+    public function __construct(QueryBuilder $qb, Engine $engine, Auth $auth)
     {
-        $this->templates = new Engine('../app/views');
-        $this->db = new QueryBuilder();
-        $db = new PDO('mysql:host=localhost;dbname=marlin', 'mysql', 'mysql');
-        $this->auth = new \Delight\Auth\Auth($db);
+        $this->templates = $engine;
+        $this->auth = $auth;
+        $this->db = $qb;
     } 
 
     public function registration(){   

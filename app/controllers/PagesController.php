@@ -6,6 +6,8 @@ use App\QueryBuilder;
 
 use League\Plates\Engine;
 
+use Delight\Auth\Auth;
+
 use \Tamtamchik\SimpleFlash\Flash;
 
 use PDO;
@@ -15,11 +17,11 @@ class PagesController {
     protected $templates;
     protected $db;
     protected $auth;
-    protected $validator;
 
-    public function __construct(){
-        $this->templates = new Engine('../app/views');
-        $this->db = new QueryBuilder();       
+    public function __construct(QueryBuilder $qb, Engine $engine, Auth $auth)
+    {
+        $this->templates = $engine;
+        $this->db = $qb;
     }
 
     public function index(){      
