@@ -17,9 +17,9 @@ use PDO;
 
 class MainController {
 
-    protected $templates;
-    protected $db;
-    protected $auth;
+    private $templates;
+    private $db;
+    private $auth;
 
     public function __construct(QueryBuilder $qb, Engine $engine, Auth $auth)
     {

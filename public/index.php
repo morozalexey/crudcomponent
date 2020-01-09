@@ -5,6 +5,8 @@ require '../vendor/autoload.php';
 
 use DI\ContainerBuilder;
 use Delight\Auth\Auth;
+use Aura\SqlQuery\QueryFactory;
+use League\Plates\Engine;
 
 $containerBuilder = new ContainerBuilder;
 
